@@ -31,7 +31,7 @@ namespace IndicinaDecideLibraryUnitTests
         {
             // Arrange
             var expectedAuthCode = "testAuthCode";
-            var responseContent = new StringContent("{\"statusCode\": 200, \"data\": {\"token\": \"" + expectedAuthCode + "\"}, \"message\": null}", Encoding.UTF8, "application/json");
+            var responseContent = new StringContent("{\"statusCode\": \"success\", \"data\": {\"token\": \"" + expectedAuthCode + "\"}}", Encoding.UTF8, "application/json");
             var responseMessage = new HttpResponseMessage(HttpStatusCode.OK) { Content = responseContent };
             _httpMessageHandlerMock.Protected()
                 .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>())
@@ -49,7 +49,7 @@ namespace IndicinaDecideLibraryUnitTests
         {
             // Arrange
             var expectedAuthCode = "newAuthCode";
-            var responseContent = new StringContent("{\"statusCode\": 200, \"data\": {\"token\": \"" + expectedAuthCode + "\"}, \"message\": null}", Encoding.UTF8, "application/json");
+            var responseContent = new StringContent("{\"statusCode\": \"success\", \"data\": {\"token\": \"" + expectedAuthCode + "\"}}", Encoding.UTF8, "application/json");
             var responseMessage = new HttpResponseMessage(HttpStatusCode.OK) { Content = responseContent };
             _httpMessageHandlerMock.Protected()
                 .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>())

@@ -7,8 +7,7 @@ using System.Text.Json.Serialization;
 
 public sealed class AuthManager
 {
-    //private const string LoginUrl = "https://api.indicina.co/api/v3/client/api/login";
-    private const string TokenGeneratorURL = "https://staging-decide-api.indicina.net/account/token/generate";
+    private const string LoginUrl = "https://api.indicina.co/api/v3/client/api/login";
     private readonly string _clientId;
     private readonly string _clientSecret;
     private string? _authCode;
@@ -16,7 +15,7 @@ public sealed class AuthManager
 
     public record Data([property: JsonPropertyName("token")] string Token);
 
-    public record TokenResponse([property: JsonPropertyName("statusCode")] int StatusCode, [property: JsonPropertyName("data")] Data? Data, [property: JsonPropertyName("message")] string? Message);
+    public record TokenResponse([property: JsonPropertyName("statusCode")] string StatusCode, [property: JsonPropertyName("data")] Data? Data);
 
     public AuthManager(string clientId, string clientSecret, HttpClient httpClient)
     {
@@ -31,7 +30,11 @@ public sealed class AuthManager
         {
             try
             {
-                _authCode = await FetchAuthCodeAsync(TokenGeneratorURL);
+                _authCode = await FetchAuthCodeAsync(LoginUrl);
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new Exception("Error fetching auth code in GetAuthCodeAsync. Network error occurred.", ex);
             }
             catch (Exception ex)
             {
@@ -43,7 +46,7 @@ public sealed class AuthManager
 
     public async Task RefreshAuthCodeAsync()
     {
-        _authCode = await FetchAuthCodeAsync(TokenGeneratorURL);
+        _authCode = await FetchAuthCodeAsync(LoginUrl);
     }
 
     private async Task<string?> FetchAuthCodeAsync(string url)
@@ -66,7 +69,7 @@ public sealed class AuthManager
         string responseBody = await response.Content.ReadAsStringAsync();
         TokenResponse? responseObject = JsonSerializer.Deserialize<TokenResponse>(responseBody);
 
-        return responseObject?.StatusCode is not 200
+        return responseObject?.StatusCode is not "success"
             ? throw new Exception($"Unable to fetch auth code. {nameof(responseObject.StatusCode)}: {responseObject?.StatusCode}")
             : responseObject?.Data?.Token;
     }
