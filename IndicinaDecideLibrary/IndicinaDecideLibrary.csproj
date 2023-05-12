@@ -5,7 +5,19 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <EnablePackageValidation>true</EnablePackageValidation>
+
+    <Authors>Indicina</Authors>
+    <Description>.NET SDK to programatically interact with the Indicina Decide API</Description>
+    <PackageProjectUrl>https://developers.indicina.co/docs</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>logo.png</PackageIcon>
+
+    <!-- A list of tags to help the search engine to understand the content of the package -->
+    <PackageTags>decide, library, indicina, fintech</PackageTags>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
