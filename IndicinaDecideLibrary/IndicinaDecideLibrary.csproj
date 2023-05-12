@@ -16,7 +16,7 @@
     <!-- A list of tags to help the search engine to understand the content of the package -->
     <PackageTags>decide, library, indicina, fintech</PackageTags>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-
+        
     <NoWarn>$(NoWarn);CS1591</NoWarn>
   </PropertyGroup>
 
@@ -42,5 +42,9 @@
         - Maximum size: 1MB
     -->
     <None Include="logo.png" Pack="true" PackagePath="" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Add a README.md next to the csproj -->
+    <None Include="README.md" Pack="true" PackagePath=""/>
   </ItemGroup>
 </Project>
