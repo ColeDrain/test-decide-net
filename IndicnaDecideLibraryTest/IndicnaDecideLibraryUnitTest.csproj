@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
+    <EnablePackageValidation>true</EnablePackageValidation>
     <Nullable>enable</Nullable>
 
     <IsPackable>false</IsPackable>

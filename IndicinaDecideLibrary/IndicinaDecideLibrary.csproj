@@ -4,6 +4,8 @@
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <EnablePackageValidation>true</EnablePackageValidation>
+    <PackageIcon>logo.png</PackageIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -19,5 +21,14 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <!--
+        Add an icon.png next to the csproj:
+        - Supported format: png, jpg
+        - Recommended dimensions: 128x128
+        - Maximum size: 1MB
+    -->
+    <None Include="logp.png" Pack="true" PackagePath="" />
   </ItemGroup>
 </Project>
