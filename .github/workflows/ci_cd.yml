@@ -12,7 +12,7 @@ on:
     branches:
       - '*'
   release:
-    types: [published]
+    types: [published, created]
 
 env:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
